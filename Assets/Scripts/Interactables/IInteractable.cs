@@ -18,5 +18,5 @@ public interface IInteractable
 												//collision.gameObject.GetComponent<Player>().SetInteractableObject(null);
 												//}
 
-	void Interract(Tool.ToolType heldTool);
+	void Interract(Tool.ToolType heldTool, float deltaTime);
 }

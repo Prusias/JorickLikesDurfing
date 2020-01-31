@@ -63,7 +63,6 @@ public class Tool : MonoBehaviour
 	public GameObject PickUp() {
 		//renderer.enabled = false;
 		gameObject.SetActive(false);
-		Debug.Log("Picked up: " + toolType);
 		return gameObject;
 
 	}

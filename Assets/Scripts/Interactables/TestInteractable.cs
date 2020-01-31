@@ -7,9 +7,15 @@ public class TestInteractable : MonoBehaviour, IInteractable
 	private bool IsWorking = false;
 	private bool IsOnFire = false;
 
+	public float Health = 100f;
 
-	public void Interract(Tool.ToolType heldTool) {
-		Debug.Log("Interracted using: " + heldTool);
+	private bool interacting;
+
+	public void Interract(Tool.ToolType heldTool, float deltaTime) {
+		if (heldTool == Tool.ToolType.FireExtinguisher) {
+			Health += 50f * deltaTime;
+		}
+
 	}
 
 	public void OnTriggerEnter2D(Collider2D collision) {
@@ -43,7 +49,9 @@ public class TestInteractable : MonoBehaviour, IInteractable
     // Update is called once per frame
     void Update()
     {
-        
+
+		Health -= 10f * Time.deltaTime;
+
     }
 
 	

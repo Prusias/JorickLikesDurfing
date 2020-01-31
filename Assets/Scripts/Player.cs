@@ -36,9 +36,9 @@ public class Player : MonoBehaviour
 				}
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.E)) {
+		if (Input.GetKey(KeyCode.E)) {
 			if(interactableObject != null) {
-				interactableObject.GetComponent<IInteractable>().Interract(heldTool.GetComponent<Tool>().toolType);
+				interactableObject.GetComponent<IInteractable>().Interract(heldTool.GetComponent<Tool>().toolType, Time.deltaTime);
 			}
 		}
 
