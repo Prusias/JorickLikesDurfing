@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
 	public GameObject closestTool;
 	public GameObject heldTool;
 	public float lowestDistance = Mathf.Infinity;
+	public float pickupDistance = 0.5f;
+	public GameObject interactableObject;
 
 
     // Start is called before the first frame update
@@ -28,7 +30,7 @@ public class Player : MonoBehaviour
 				heldTool.GetComponent<Tool>().Drop(gameObject.transform.position);
 				heldTool = null;
 			} else {
-				if (lowestDistance < 0.3f) {
+				if (lowestDistance < pickupDistance) {
 					heldTool = closestTool.GetComponent<Tool>().PickUp();
 				}
 			}
@@ -55,5 +57,9 @@ public class Player : MonoBehaviour
 				closestTool = tool;
 			}
 		}
+	}
+
+	public void SetInteractableObject(GameObject interactableObject) {
+		this.interactableObject = interactableObject;
 	}
 }
