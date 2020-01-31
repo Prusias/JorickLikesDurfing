@@ -35,10 +35,12 @@ public class Player : MonoBehaviour
 					heldTool = closestTool.GetComponent<Tool>().PickUp();
 				}
 			}
-
-			
 		}
-
+		if (Input.GetKeyDown(KeyCode.E)) {
+			if(interactableObject != null) {
+				interactableObject.GetComponent<IInteractable>().Interract(heldTool.GetComponent<Tool>().toolType);
+			}
+		}
 
 
     }

@@ -5,8 +5,14 @@ using UnityEngine;
 public class Tool : MonoBehaviour
 {
 	public enum ToolType {
-		TestTool,
-		TestTool2
+		FireExtinguisher,
+		WeldingMachine,
+		Vacuum,
+		Wrench,
+		FlexTape,
+		WindingKey,
+		Flashlight,
+		OverwriteTool
 	}
 
 	public ToolType toolType;
