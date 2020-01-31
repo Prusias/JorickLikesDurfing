@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
 
 	public float movementSpeed = 5f;
 
-	Vector2 movement;
+	public Vector2 movement;
 
 
     // Start is called before the first frame update

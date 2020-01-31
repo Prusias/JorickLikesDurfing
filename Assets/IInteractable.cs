@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Interactable 
+public interface IInteractable 
 {
 	// Start is called before the first frame update
 

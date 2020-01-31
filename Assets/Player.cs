@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 	public float lowestDistance = Mathf.Infinity;
 	public float pickupDistance = 0.5f;
 	public GameObject interactableObject;
+	public float throwingTime = .25f;
 
 
     // Start is called before the first frame update
@@ -27,7 +28,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
 			if (heldTool != null) {
-				heldTool.GetComponent<Tool>().Drop(gameObject.transform.position);
+				heldTool.GetComponent<Tool>().Drop(gameObject.transform.position, gameObject.GetComponent<Movement>().movement, throwingTime);
 				heldTool = null;
 			} else {
 				if (lowestDistance < pickupDistance) {
