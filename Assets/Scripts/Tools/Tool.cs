@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tool : MonoBehaviour
 {
 	public enum ToolType {
+		None,
 		FireExtinguisher,
 		WeldingMachine,
 		Vacuum,

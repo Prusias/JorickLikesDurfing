@@ -7,13 +7,16 @@ public class Player : MonoBehaviour
 
 	public GameObject[] tools;
 	public GameObject closestTool;
-	public GameObject heldTool;
+	public GameObject heldTool = null;
 	public GameObject wornClothing;
 	public float lowestDistance = Mathf.Infinity;
 	public float pickupDistance = 0.5f;
 	public GameObject interactableObject;
 	public GameObject nearbyClothing;
 	public float throwingTime = .25f;
+
+	public GameObject alert;
+	public GameObject camera;
 
 	// Movement
 	public Rigidbody2D rb;
@@ -51,7 +54,11 @@ public class Player : MonoBehaviour
 		}
 		if (Input.GetKey(KeyCode.E)) {
 			if(interactableObject != null) {
-				interactableObject.GetComponent<IInteractable>().Interract(heldTool.GetComponent<Tool>().toolType, Time.deltaTime);
+				if(heldTool != null) {
+					interactableObject.GetComponent<IInteractable>().Interract(heldTool.GetComponent<Tool>().toolType, Time.deltaTime);
+				} else {
+					interactableObject.GetComponent<IInteractable>().Interract(Tool.ToolType.None, Time.deltaTime);
+				}
 			}
 		}
 
@@ -77,6 +84,7 @@ public class Player : MonoBehaviour
 		}
 
 		rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime * wornClothing.GetComponent<Clothing>().movementModifier);
+
 	}
 
 	public void SetInteractableObject(GameObject interactableObject) {
