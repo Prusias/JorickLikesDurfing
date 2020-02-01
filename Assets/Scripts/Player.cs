@@ -8,33 +8,46 @@ public class Player : MonoBehaviour
 	public GameObject[] tools;
 	public GameObject closestTool;
 	public GameObject heldTool;
+	public GameObject wornClothing;
 	public float lowestDistance = Mathf.Infinity;
 	public float pickupDistance = 0.5f;
 	public GameObject interactableObject;
+	public GameObject nearbyClothing;
 	public float throwingTime = .25f;
 
+	// Movement
+	public Rigidbody2D rb;
+	public float movementSpeed = 5f;
+	public Vector2 movement;
 
-    // Start is called before the first frame update
-    void Start()
+
+	// Start is called before the first frame update
+	void Start()
     {
 		tools = GameObject.FindGameObjectsWithTag("Tool");
 
 
-		//collider = gameObject.GetComponent<Collider2D>();
-    }
+		rb = GetComponent<Rigidbody2D>();
+	}
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
-			if (heldTool != null) {
-				heldTool.GetComponent<Tool>().Drop(gameObject.transform.position, gameObject.GetComponent<Movement>().movement, throwingTime);
-				heldTool = null;
+			if (nearbyClothing != null) {
+				wornClothing.GetComponent<Clothing>().Drop(gameObject.transform.position);
+				wornClothing = nearbyClothing.GetComponent<Clothing>().Pickup();
 			} else {
-				if (lowestDistance < pickupDistance) {
-					heldTool = closestTool.GetComponent<Tool>().PickUp();
+				if (heldTool != null) {
+					heldTool.GetComponent<Tool>().Drop(gameObject.transform.position, movement, throwingTime);
+					heldTool = null;
+				} else {
+					if (lowestDistance < pickupDistance) {
+						heldTool = closestTool.GetComponent<Tool>().PickUp();
+					}
 				}
 			}
+			
 		}
 		if (Input.GetKey(KeyCode.E)) {
 			if(interactableObject != null) {
@@ -43,7 +56,10 @@ public class Player : MonoBehaviour
 		}
 
 
-    }
+		movement.x = Input.GetAxisRaw("Horizontal"); // -1 is left
+		movement.y = Input.GetAxisRaw("Vertical"); // -1 is down
+
+	}
 
 	void FixedUpdate() {
 		
@@ -53,16 +69,20 @@ public class Player : MonoBehaviour
 				lowestDistance = distanceToClosest;
 			}
 
-
 			float distance = Vector2.Distance(gameObject.transform.position, tool.transform.position);
 			if (distance < lowestDistance) {
 				lowestDistance = distance;
 				closestTool = tool;
 			}
 		}
+
+		rb.MovePosition(rb.position + movement * movementSpeed * Time.fixedDeltaTime * wornClothing.GetComponent<Clothing>().movementModifier);
 	}
 
 	public void SetInteractableObject(GameObject interactableObject) {
 		this.interactableObject = interactableObject;
+	}
+	public void SetNearbyClothing(GameObject nearbyClothing) {
+		this.nearbyClothing = nearbyClothing;
 	}
 }

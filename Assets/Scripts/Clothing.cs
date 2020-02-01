@@ -24,6 +24,12 @@ public class Clothing : MonoBehaviour
 		gameObject.transform.position = position;
 	}
 
+	public void OnTriggerEnter2D(Collider2D collision) {
+		collision.gameObject.GetComponent<Player>().SetNearbyClothing(gameObject);
+	}
 
+	public void OnTriggerExit2D(Collider2D collision) {
+		collision.gameObject.GetComponent<Player>().SetNearbyClothing(null);
+	}
 }
 
