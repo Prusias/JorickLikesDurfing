@@ -6,7 +6,7 @@ public class Electricity : Interctable
 {
 	public bool Tutorial = true;
 	public float health = 2f;
-	public float repairSpeed = 50f;
+	public float repairSpeed = 100f;
 
 	public GameObject healthBar;
 
