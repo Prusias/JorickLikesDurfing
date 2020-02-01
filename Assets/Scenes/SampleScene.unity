@@ -471,7 +471,7 @@ PrefabInstance:
     - target: {fileID: 2145431082606638210, guid: f25d5ca7cd44b0f419fc52ca53f9e307,
         type: 3}
       propertyPath: movementModifier
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2145431082606638210, guid: f25d5ca7cd44b0f419fc52ca53f9e307,
         type: 3}
