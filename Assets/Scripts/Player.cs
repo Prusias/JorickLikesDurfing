@@ -23,6 +23,11 @@ public class Player : MonoBehaviour
 	public float movementSpeed = 5f;
 	public Vector2 movement;
 
+	public SpriteRenderer tooltip_E;
+	public SpriteRenderer tooltip_Ctrl;
+
+	public bool hasFlashlight;
+
 
 	// Start is called before the first frame update
 	void Start()
@@ -47,12 +52,15 @@ public class Player : MonoBehaviour
 				} else {
 					if (lowestDistance < pickupDistance) {
 						heldTool = closestTool.GetComponent<Tool>().PickUp();
+
+
+
 					}
 				}
 			}
 			
 		}
-		if (Input.GetKey(KeyCode.E)) {
+		if (Input.GetKey(KeyCode.LeftControl)) {
 			if(interactableObject != null) {
 				if(heldTool != null) {
 					interactableObject.GetComponent<IInteractable>().Interract(heldTool.GetComponent<Tool>().toolType, Time.deltaTime);
@@ -89,6 +97,12 @@ public class Player : MonoBehaviour
 
 	public void SetInteractableObject(GameObject interactableObject) {
 		this.interactableObject = interactableObject;
+		if (interactableObject != null) {
+			tooltip_Ctrl.enabled = true;
+		} else {
+			tooltip_Ctrl.enabled = false;
+		}
+		
 	}
 	public void SetNearbyClothing(GameObject nearbyClothing) {
 		this.nearbyClothing = nearbyClothing;

@@ -61,14 +61,14 @@ public class Tool : MonoBehaviour
 		
 	}
 
-	public GameObject PickUp() {
+	public virtual GameObject PickUp() {
 		//renderer.enabled = false;
 		gameObject.SetActive(false);
 		return gameObject;
 
 	}
 
-	public void Drop(Vector2 position, Vector2 direction, float throwingTime) {
+	public virtual void Drop(Vector2 position, Vector2 direction, float throwingTime) {
 		//renderer.enabled = true;
 		gameObject.SetActive(true);
 		beingThrown = true;
