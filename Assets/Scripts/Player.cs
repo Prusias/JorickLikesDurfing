@@ -63,9 +63,9 @@ public class Player : MonoBehaviour
 		if (Input.GetKey(KeyCode.LeftControl)) {
 			if(interactableObject != null) {
 				if(heldTool != null) {
-					interactableObject.GetComponent<IInteractable>().Interract(heldTool.GetComponent<Tool>().toolType, Time.deltaTime);
+					interactableObject.GetComponent<Interctable>().Interract(heldTool.GetComponent<Tool>().toolType, Time.deltaTime);
 				} else {
-					interactableObject.GetComponent<IInteractable>().Interract(Tool.ToolType.None, Time.deltaTime);
+					interactableObject.GetComponent<Interctable>().Interract(Tool.ToolType.None, Time.deltaTime);
 				}
 			}
 		}

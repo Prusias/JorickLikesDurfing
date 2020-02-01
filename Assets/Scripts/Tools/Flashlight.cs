@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Flashlight : Tool
 {
-	public new ToolType toolType = ToolType.Flashlight;
 	public Player player;
+
+	private void Start() {
+		this.toolType = ToolType.Flashlight;
+	}
 
 	public override GameObject PickUp() {
 		gameObject.SetActive(false);

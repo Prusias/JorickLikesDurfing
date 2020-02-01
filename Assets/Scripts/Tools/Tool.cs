@@ -13,12 +13,13 @@ public class Tool : MonoBehaviour
 		FlexTape,
 		WindingKey,
 		Flashlight,
-		OverwriteTool
+		OverwriteTool,
+		ElectricityKit
 	}
 
 	public ToolType toolType;
-	private Rigidbody2D rigidbody;
-	private SpriteRenderer renderer;
+	private Rigidbody2D rb;
+	private SpriteRenderer rend;
 
 	// Throwing 
 	private bool beingThrown = false;
@@ -29,8 +30,8 @@ public class Tool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		renderer = gameObject.GetComponent<SpriteRenderer>();
-		rigidbody = gameObject.GetComponent<Rigidbody2D>();
+		rend = gameObject.GetComponent<SpriteRenderer>();
+		rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -52,7 +53,7 @@ public class Tool : MonoBehaviour
 					force *= 0.5f;
 				}
 
-				rigidbody.AddForce(force, ForceMode2D.Impulse);
+				rb.AddForce(force, ForceMode2D.Impulse);
 			} else {
 				beingThrown = false;
 			}

@@ -2,57 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Electricity : MonoBehaviour, IInteractable
+public class Electricity : Interctable
 {
 	public bool Tutorial = true;
+	public float health = 2f;
+	public float repairSpeed = 50f;
 
-	public bool isWorking = false;
+	public GameObject healthBar;
 
-
-	public void Interract(Tool.ToolType heldTool, float deltaTime) {
+	public override void Interract(Tool.ToolType heldTool, float deltaTime) {
 		if (Tutorial) {
-			if (!isWorking) {
-				isWorking = true;
+			if (heldTool == Tool.ToolType.ElectricityKit) {
+				health += repairSpeed * Time.deltaTime;
 
+				if (health > 200f) {
+					Working = true;
+					health = 200f;
+					healthBar.GetComponent<SpriteRenderer>().color = Color.green;
+				}
 
-
+				Vector2 scale = healthBar.transform.localScale;
+				scale.x = health / 100;
+				healthBar.transform.localScale = scale;
 			}
+			
 		}
 	}
-
-	public bool OnFire() {
-		throw new System.NotImplementedException();
-	}
-
-	public void OnTriggerEnter2D(Collider2D collision) {
-		collision.gameObject.GetComponent<Player>().SetInteractableObject(gameObject);
-	}
-
-	public void OnTriggerExit2D(Collider2D collision) {
-		collision.gameObject.GetComponent<Player>().SetInteractableObject(null);
-	}
-
-	public void SetOnFire(bool isOnFire) {
-		throw new System.NotImplementedException();
-	}
-
-	public void SetWorking(bool isWorking) {
-		isWorking = true;
-	}
-
-	public bool Working() {
-		return isWorking;
-	}
-
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

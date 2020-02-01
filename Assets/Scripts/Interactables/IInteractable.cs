@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IInteractable 
-{
+public class Interctable : MonoBehaviour {
 	// Start is called before the first frame update
 
-	bool Working();
-	void SetWorking(bool isWorking);
-	bool OnFire();
-	void SetOnFire(bool isOnFire);
+	public bool Working = false;
+	public bool OnFire = false;
 
-	void OnTriggerEnter2D(Collider2D collision); //{
-														 //collision.gameObject.GetComponent<Player>().SetInteractableObject(gameObject);
-														 //}
-	void OnTriggerExit2D(Collider2D collision); // {
-												//collision.gameObject.GetComponent<Player>().SetInteractableObject(null);
-												//}
+	public void OnTriggerEnter2D(Collider2D collision) {
+		collision.gameObject.GetComponent<Player>().SetInteractableObject(gameObject);
+	}
+	public void OnTriggerExit2D(Collider2D collision) {
+		collision.gameObject.GetComponent<Player>().SetInteractableObject(null);
+	}
 
-	void Interract(Tool.ToolType heldTool, float deltaTime);
+	public virtual void Interract(Tool.ToolType heldTool, float deltaTime) {
+	}
 }
